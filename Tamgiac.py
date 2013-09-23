@@ -3,13 +3,13 @@ def tamgiac(a,b,c):
 		if( ( a==b ) & ( b==c ) & (a==c) ):
 			print " Tam giac deu "
 			return
-		if( (( a==b ) | ( a==c ) | ( b==c)) & ((a**2+b**2==c**2) | (a**2+c**2==b**2 ) | (b**2+c**2==a**2)) ):
+		if( (( a==b ) | ( a==c ) | ( b==c)) & ((round(a**2)+round(b**2)==round(c**2)) | (round(a**2)+round(c**2)==round(b**2) ) | (round(b**2)+round(c**2)==round(a**2))) ):
 			print " Tam giac vuong can"
 			return
 		if((a==b ) | ( a==c ) | ( b==c)):
 			print " Tam giac can "
 			return
-		if((a**2+b**2==c**2) | (a**2+c**2==b**2 ) | (b**2+c**2==a**2)) :
+		if((round(a**2)+round(b**2)==round(c**2)) | (round(a**2)+round(c**2)==round(b**2) ) | (round(b**2)+round(c**2)==round(a**2))) :
 			print " Tam giac vuong "
 			return
 		print " Tam giac thuong "
