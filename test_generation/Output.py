@@ -56,7 +56,7 @@ def checkvar(a):
 '''
 -------------------------------------------------------------
 Doc file input.py
-Doc mang cac bien  va cac gia tri tra ve
+Doc mang cac bien   tra ve
 --------------------------------------------------------------
 '''
 #START read
