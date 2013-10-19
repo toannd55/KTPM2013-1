@@ -14,10 +14,7 @@ import input
 
 
 var=[]                                #luu cac bien duoi dang list of array number
-ret=[]                                #luu cac string tra ve [ return " Not null" -> Not null ] vao list
-
 vflag=False
-rflag=False
 check=0
 
 
@@ -65,10 +62,6 @@ Doc mang cac bien  va cac gia tri tra ve
 #START read
 with open('input.py','r') as f:
     for line in f:
-        if 'main' in line:
-            rflag=True
-        if (rflag==True) & ('return' in line):
-            ret.append(line.strip().lstrip("return '").rstrip("'"))
         if line.strip().startswith("'''"):
             vflag=True
             check=check+1
