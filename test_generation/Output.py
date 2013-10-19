@@ -1,3 +1,12 @@
+'''
+--------------------
+Name        :   Output.py
+Author      :   Tuyen Nguyen
+Date create :   10/15/2013
+Last Modify :   10/19/2013
+
+'''
+
 import re
 import math
 import unittest
