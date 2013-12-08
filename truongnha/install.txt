@@ -1,0 +1,23 @@
+Hướng dẫn cài đặt :
+- install 3 gói cài đặt sau :
+
+Windows 64 bit  :
++ python-2.7.6.amd64.msi
+  -> Link : http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
++ wxPython2.8-win64-unicode-2.8.12.1-py27.exe
+  -> Link : http://nchc.dl.sourceforge.net/project/wxpython/wxPython/2.8.12.1/wxPython2.8-win64-unicode-2.8.12.1-py27.exe
++ robotframework-2.8.1.win-amd64.exe
+  -> Link : 
+Windows 32 bit :
++ python :    -> http://www.python.org/ftp/python/2.7.6/python-2.7.6.amd64.msi
++ wxPython :  -> http://downloads.sourceforge.net/wxpython/wxPython2.8-win32-unicode-2.8.12.1-py27.exe
++ robotframework :  -> 
+
+- Tạo path cho windows 2 thư mục sau :
+C:\Python27
+C:\Python27\Scripts
+
+[ Tương tự như trong java, xem ở đây để biết : http://hocjavadanang.blogspot.com/2013/08/get-file-path-in-java-lay-uong-dan-file.html ]
+
+- Tải eassy_setup ở đây về :
+  
