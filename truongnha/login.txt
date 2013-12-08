@@ -1,0 +1,19 @@
+*** Settings ***
+
+Library		Selenium2Library
+Resource	keyword.txt
+
+*** Testcases ***
+Login Truong Nha with User and Password
+	Login Setup
+	Enter Username	tuyennt
+	Enter Password	123456789
+	Click The Login Button
+	Login Is Successful
+Login Truong Nha with Empty User and Password
+	Login Setup
+	Enter Username	${empty}
+	Enter Password	123456789
+	Click the Login Button
+	Login Is Unsuccessful 
+	
