@@ -1,0 +1,23 @@
+*** Variables ***
+${login address}=	http://truongnha.com/login/
+${browser}=	ff
+${welcome page}=	http://truongnha.com/school/
+*** Keywords ***
+Enter Username	[Arguments]	${username}
+	Input Text	username	${username}
+
+Enter Password	[Arguments]	${password}
+	Input Text	password	${password}
+	
+Click The Login Button
+	Click Button	login
+
+Login Is Successful
+	Location Should Be	${welcome page}
+	
+Login Is Unsuccessful
+	Location Should Be	${login address}
+	
+Login Setup
+	Open Browser	${login address}	${browser}
+	Maximize Browser Window
