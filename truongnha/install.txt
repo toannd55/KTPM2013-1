@@ -1,4 +1,6 @@
 Hướng dẫn cài đặt :
+- Tải cả folder về giải nén chung thư mục :v
+- Cài java tại : java.com < tải bản 32 bit cho tất cả các version windows và không thay đổi thư mục cài đặt >
 - install 3 gói cài đặt sau :
 
 Windows 64 bit  :
@@ -19,5 +21,11 @@ C:\Python27\Scripts
 
 [ Tương tự như trong java, xem ở đây để biết : http://hocjavadanang.blogspot.com/2013/08/get-file-path-in-java-lay-uong-dan-file.html ]
 
-- Tải eassy_setup ở đây về :
-  
+- Mở  ez_setup.py
+- bật cmd , link đến thư mục chứa file chạy những lệnh : 
+    python ez_setup.py
+    < đợi chạy xong >
+    easy_install robotframework-selenium2library
+    < đợi chạy xong >
+    pybot login.txt
+Finish test
