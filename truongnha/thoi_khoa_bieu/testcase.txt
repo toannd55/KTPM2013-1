@@ -1,0 +1,52 @@
+﻿*** Settings ***
+
+Documentation		Test chức năng thời khóa biểu
+
+Resource	resource.txt
+
+*** Variables ***
+
+${ran}	20887
+${td}	1
+${tr}	2
+${id_period}	id_period_1
+${value}	20896
+${name course}	Thể dục
+
+*** Test Cases ***
+
+TEST Login To Truong Nha
+	Start Login Web Page
+
+TEST Class List
+	Go To Class Detail
+	
+TEST Go To Function Schedule
+	Go To Schedule Manager
+
+TEST Select Multi Value One Cell
+	Select Multi Value One Cell
+	
+TEST Select Value Multi Cell Row
+	Select Value Multi Cell Row
+
+TEST Select Value Multi Cell Column
+	Select Value Multi Cell Column
+	[Tear Down]	Close Browser
+
+*** Keywords ***
+
+Select Multi Value One Cell
+	:FOR	${j}	IN	20885	20886	20887	20888	20889	20890	20891	20892	20893	20894	20895	20896
+	\		Set Assign Id To Cell	${td}	${tr}	cell_id_${j}
+	\		Display Value By ID	cell_id_${j}	${j}
+
+Select Value Multi Cell Row
+	:FOR	${i}	IN RANGE	2	7
+	\		Set Assign Id To Cell	1	${i}	cell_id_${i}
+	\		Display Value By ID	cell_id_${i}	${ran}
+	
+Select Value Multi Cell Column
+	:FOR	${k}	IN RANGE	1	10
+	\		Set Assign Id To Cell	${k}	5	cell_id_${k}_${ran}
+	\		Display Value By ID	cell_id_${k}_${ran}	${ran}

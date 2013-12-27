@@ -1,0 +1,55 @@
+﻿*** Settings ***
+
+Resource	resource.txt
+
+*** Variables ***
+
+${Start Id}	27659
+${Start Month}	1
+${End Month}	5
+${Num Stu}	15
+*** Testcases ***
+
+TEST Login To Truong Nha 
+	Start Login Web Page
+	
+TEST Class List
+	Goto Class Detail
+	
+TEST Conduct Of Class
+	Goto Conduct of Class
+	
+TEST Enter Conduct For Students In Cell
+	Assign Id To Element	xpath=//tr[@class="${Start Id}"]/td[@class="col1 hk-thang"]/input[@class="hk"]	cell
+	Compare Input And Output	cell	t	T
+	Compare Input And Output	cell	k	K
+	Compare Input And Output	cell	b	TB
+	Compare Input And Output	cell	Y	Y
+	Compare Input And Output	cell	ttt	T
+	Compare Input And Output	cell	ty	T
+	Compare Input And Output	cell	a	\
+	Compare Input And Output	cell	()	\
+	Compare Input And Output	cell	.	\
+	Compare Input And Output	cell	${empty}	\
+
+
+TEST Enter Conduct For Students In Cells 
+	Wait Until Page Contains Element	id=id_hk_thang_9	4s
+	Wait Until Page Contains Element	id=id_hk_thang_10	4s
+	Wait Until Page Contains Element	id=id_hk_thang_11	11s
+	Compare Input And Output	id=id_hk_thang_9	t	T
+	Compare Input And Output	id=id_hk_thang_10	y	Y
+	Compare Input And Output	id=id_hk_thang_11	k	K
+
+TEST Enter Conduct For Students In Row
+
+	:FOR	${i}	IN RANGE	${Start Month}	${End Month}
+	\		Wait Until Page Contains Element	id=id_hk_thang_${i}	4s
+	\		Compare Input And Output	id=id_hk_thang_${i}	y	Y
+	\		Compare Input And Output	id=id_hk_thang_${i}	t	T
+	\		Compare Input And Output	id=id_hk_thang_${i}	b	TB
+	\		Compare Input And Output	id=id_hk_thang_${i}	k	K
+	[Teardown]  Close Browser
+
+	
+

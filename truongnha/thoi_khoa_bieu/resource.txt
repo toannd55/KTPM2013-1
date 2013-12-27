@@ -1,0 +1,82 @@
+﻿*** Settings ***
+
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+
+Library           Selenium2Library
+
+*** Variable ***
+
+${SERVER }	truongnha.com
+${BROWSER}	ff
+${DELAY}	0
+${USERNAME}	tuyennt
+${PASSWORD}	123456789
+${LOGIN PAGE}	http://${SERVER}/login
+${WELCOME PAGE}	http://${SERVER}/school/
+${CLASS DETAIL}	/school/viewClassDetail
+${CLASS ID}	1480
+${COURSE ID}
+
+*** Keywords ***
+
+Open Browser Go To Login Page
+	Open Browser	${LOGIN PAGE}	${BROWSER}
+	Maximize Browser Window
+	Set Selenium Speed	${DELAY}
+	Login Page Should Be Open
+
+Login Page Should Be Open
+	Title Should Be	Trường Nhà
+	
+Enter Username
+	[Arguments]	${username}
+	Input Text	username	${username}
+	
+Enter Password
+	[Arguments]	${password}
+	Input Text	password	${password}
+	
+Click Login Button
+	Click Button	login
+	
+Login Is Successful
+	Location Should Be	${WELCOME PAGE}
+	
+Start Login Web Page
+	Open Browser Go To Login Page
+	Enter Username	${USERNAME}
+	Enter Password	${PASSWORD}
+	Click Login Button
+	Login Is Successful
+	
+Go To Class Detail
+	Click Link	${CLASS DETAIL}/${CLASS ID}
+
+Go To Schedule Manager
+	Click Element	id=btn-lichhoc
+
+Display Value By ID
+	[Arguments]	${cell}	${input}
+	Select From List By Value	${cell}	${input}
+	Click Element	${cell}
+	Press Key	${cell}	\\10
+
+Set Assign Id To Cell
+	[Arguments]	${tr}	${td}	${cell id}
+	Assign Id To Element	xpath=//tr[@class="${tr}"]/td[@id="${td}"]/select[@class="input-medium"]	${cell id}
+	
+Set Assign Id To Course
+	[Arguments]	${id_period}	${value}	${course id}
+	Assign Id To Element	xpath=//select[@id="${id_period}"]/option[@value="${value}"]	${course id}
+	
+Count Course In Page
+	[Arguments]	${xpath}	${name course}
+	${number}=	Get Matching Xpath Count	${xpath}
+	${expert}=	Get Value	${name course}
+	Should Be Equal	${numer}	${expert}
+
+
