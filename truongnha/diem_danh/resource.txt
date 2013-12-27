@@ -1,0 +1,70 @@
+﻿*** Settings ***
+
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+
+*** Variables ***
+
+${SERVER}	truongnha.com
+${BROWSER}	firefox
+${DELAY}	0
+${USERNAME}	tuyennt
+${PASSWORD}	123456789
+${LOGIN URL}	http://${SERVER}/login
+${WELCOME URL}	http://${SERVER}/school/
+${CLASS DETAIL}	/school/viewClassDetail
+${CONDUCT URL}	/school/hanhkiem
+${CLASS ID}	1480
+${DATE}	28/12/2013
+*** Keywords ***
+Open Browser To Login Page
+	Open Browser	${LOGIN URL}	${BROWSER}
+	Maximize Browser Window
+	Set Selenium Speed	${DELAY}
+	Login Page Should Be Open
+
+Login Page Should Be Open
+	Title Should Be	Trường Nhà
+	
+Enter Username	[Arguments]	${username}
+	Input Text	username	${username}
+	
+Enter Password	[Arguments]	${password}
+	Input Text	password	${password}
+	
+Click Login Button
+	Click Button	login
+	
+Login Is Successful
+	Location Should Be	${WELCOME URL}
+	
+Start Login Web Page
+	Open Browser To Login Page
+	Enter Username	${USERNAME}
+	Enter Password	${PASSWORD}
+	Click Login Button
+	Login Is Successful
+	
+Go To Class Detail
+	Click Link	${CLASS DETAIL}/${CLASS ID}
+
+Go To Muster Detail
+	Click Element	id=btn-diemdanh
+	
+Go To Download
+	Click Element	id=export
+	
+Set Assign Id To Cell	
+	[Arguments]	${td}	${start id}	${cell}
+	Assign Id To Element	xpath=//td[@class="${td}"]/input[@id="${start id}_${DATE}_loai"]	${cell}
+	
+Compare Input And Output	[Arguments]	${cell}	${input}	${expert}
+	Click Element	${cell}
+	Input Text	${cell}	${input}
+	Press Key	${cell}	\\10
+	${output}=	Get Value	${cell}
+	Should Be Equal	${output}	${expert}
