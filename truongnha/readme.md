@@ -1,5 +1,6 @@
 KIỂM THỬ WEB SITE TRƯỜNG NHÀ
 
+
 ***************************************
 
 CÁC CHỨC NĂNG ĐĂNG KÍ TEST  
@@ -9,6 +10,7 @@ CÁC CHỨC NĂNG ĐĂNG KÍ TEST
 + Tính tổng kết
 
 ***************************************
+
 HƯỚNG DẪN CHẠY
 
 +Từ thư mục cha của các thư mục ta chạy dòng lệnh
@@ -16,7 +18,6 @@ pybot $folder_name
 
 VD :
 pybot diem_danh
-pybot tinh_tong_ket
 
 ***************************************
 
