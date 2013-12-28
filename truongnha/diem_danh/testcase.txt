@@ -28,8 +28,8 @@ Test Enter All Value Muster To Cell
 	Compare Input And Output	cell	?	\
 	Compare Input And Output	cell	${empty}	\
 
-Test Enter Value Muster To Mutil Cell
-	:FOR	${i}	IN	27660	27661	27662	27663	27664	27665	27666	27668	27669	27670	27671	27672	27673
+Test Enter Value Muster To Mutil Cell With DATE
+	:FOR	${i}	IN	27659	27660	27661	27662	27663	27664	27665	27666	27668	27669	27670	27671	27672	27673
 	\		Wait Until Page Contains Element	id=${i}_${DATE}_loai
 	\		Compare Input And Output	id=${i}_${DATE}_loai	p	P
 	\		Compare Input And Output	id=${i}_${DATE}_loai	k	K
@@ -39,6 +39,18 @@ Test Enter Value Muster To Mutil Cell
 	\		Compare Input And Output	id=${i}_${DATE}_loai	a	\
 	\		Compare Input And Output	id=${i}_${DATE}_loai	?	\
 	\		Compare Input And Output	id=${i}_${DATE}_loai	${empty}	\
+	
+Test Enter Value Muster To Mutil Cell With DATE 3
+	:FOR	${i}	IN	27659	27660	27661	27662	27663	27664	27665	27666	27668	27669	27670	27671	27672	27673
+	\		Wait Until Page Contains Element	id=${i}_${DATE3}_loai
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	p	P
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	k	K
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	m	M
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	mm	M
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	mp	M
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	a	\
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	?	\
+	\		Compare Input And Output	id=${i}_${DATE3}_loai	${empty}	\
 	[Tear Down]	Close Browser
 	
 *** Keywords ***
