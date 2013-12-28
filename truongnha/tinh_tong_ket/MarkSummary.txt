@@ -1,0 +1,15 @@
+﻿*** Settings ***
+
+Resource		resource.txt
+
+*** Test Cases ***
+
+#Test tinh diem trung binh cua tat ca hoc sinh trong mot lop
+TEST Login To Mark Summary Truong Nha
+	Start Login Web Page
+	Goto Class Detail
+	Goto Mark Summary
+	
+TEST Mark Summary Table Of A Class
+	Test Mark Summary
+	[Tear Down]	Close Browser

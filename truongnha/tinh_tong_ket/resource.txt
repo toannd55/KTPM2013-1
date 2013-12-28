@@ -1,0 +1,108 @@
+﻿*** Settings ***
+
+Library			Selenium2Library
+Library			functionTestCase
+
+*** Variables ***
+
+${SERVER}		truongnha.com
+${BROWSER}		firefox
+${DELAY}		0
+${USERNAME}		tuyennt
+${PASSWORD}		123456789
+${LOGIN URL}	http://${SERVER}/login
+${WELCOME URL}	http://${SERVER}/school/
+${ERROR URL}	http://${SERVER}/login/
+${CLASS DETAIL}	/school/viewClassDetail
+
+${BTN TONGKET}	btn-tongket
+${BTN TINHTRUNGBINH}	tinhtrungbinh
+${TABLE NAME}	mark-table
+
+${CLASS ID}		1486
+${NUMBER STUDENTS}	11
+${BEGIN ROW}	3
+${INDEX THE DUC}	16
+${INDEX DIEM TB}	19
+${INDEX HOC LUC}	20
+${INDEX HANH KIEM}	21
+${INDEX DANH HIEU}	22
+
+${ĐẠT}			Đ			#Điểm thể dục Đạt và Chưa Đạt
+${CHƯA ĐẠT}		CĐ
+
+*** Keywords ***
+
+Open Browser To Login Page
+	Open Browser	${LOGIN URL}	${BROWSER}
+	Maximize Browser Window
+	Set Selenium Speed	${DELAY}
+	Login Page Should Be Open
+
+Login Page Should Be Open
+	Title Should Be	Trường Nhà
+
+Enter Username	[Arguments]	${username}
+	Input Text	username	${username}
+	
+Enter Password	[Arguments]	${password}
+	Input Text	password	${password}
+	
+Click Login Button
+	Click Button	login
+	
+Login Is Successful
+	Location Should Be	${WELCOME URL}
+	Title Should Be 	Trường Nhà - KTPM_Nhom10
+	
+Start Login Web Page
+	Open Browser To Login Page
+	Enter Username	${USERNAME}
+	Enter Password	${PASSWORD}
+	Click Login Button
+	Login is Successful
+	
+Goto Class Detail
+	Click Link	${CLASS DETAIL}/${CLASS ID}
+	
+Goto Mark Summary
+	Click Link	${BTN TONGKET}
+	Click Link	${BTN TINHTRUNGBINH}
+
+Close The Browser
+	Close Browser
+
+#Test tinh diem trung binh
+Test Mark Summary
+	${END ROW}=		add		${BEGIN ROW}	${NUMBER STUDENTS}
+	Set Test Variable	${TR CLASS}	27740
+	Set Test Variable	${HANH KIEM CLASS}	"input-mini hk"
+	
+	:FOR	${INDEX ROW}		IN RANGE	${BEGIN ROW}	${END ROW}
+	\		${DIEM THE DUC}=	Get Table Cell	${TABLE NAME}	${INDEX ROW}	${INDEX THE DUC}
+	\		${HANH KIEM}=		Get Value	xpath=//tr[@class="${TR CLASS}"]/td/input[@class=${HANH KIEM CLASS}]
+	\		${LIST DIEM 1}=		Get Score-Board	${INDEX ROW}	5	16							#Tu mon toan den truoc mon the duc
+	\		${LIST DIEM 2}=		Get Score-Board	${INDEX ROW}	17	19							#Tu sau mon the duc den het
+	#Test tinh diem trung binh cua 1 hoc sinh
+	\		${DIEM TB}=		Get Table Cell	${TABLE NAME}	${INDEX ROW}	${INDEX DIEM TB}	#Lay gia tri diem trung binh o bang cua mot hoc sinh
+	\		${DIEM TB CAL}=	Diem Trung Binh	${LIST DIEM 1}	${LIST DIEM 2}						#Diem TB tinh toan
+	\		${DIEM TB}=		Convert To Number	${DIEM TB}
+	\		Should Be Equal	${DIEM TB}	${DIEM TB CAL}
+	#Test xet hoc luc
+	\		${HOC LUC}=			Get Table Cell	${TABLE NAME}	${INDEX ROW}	${INDEX HOC LUC}
+	\		${HOC LUC CAL}=		Tinh Hoc Luc	${DIEM THE DUC}	${DIEM TB}		${LIST DIEM 1}	${LIST DIEM 2}
+	\		Should Be Equal	${HOC LUC}	${HOC LUC CAL}
+	#Test danh hieu
+	\		${DANH HIEU}=		Get Table Cell	${TABLE NAME}	${INDEX ROW}	${INDEX DANH HIEU}
+	\		${DANH HIEU CAL}=	Tinh Danh Hieu	${HOC LUC CAL}		${HANH KIEM}
+	\		Should Be Equal	${DANH HIEU}	${DANH HIEU CAL}
+	\		${TR CLASS}=	add		${TR CLASS}	1												#Cong them gia tri TR CLASS de lay hoc luc cua cac hoc sinh tiep theo
+
+#Lay bang diem tru diem the duc
+Get Score-Board
+	[Arguments]		${INDEX ROW}	${BEGIN COLUMN}		${END COLUMN}
+	[Return]		${LIST}
+	${LIST}=	Create List
+	:FOR	${INDEX COLUMN}	IN RANGE	${BEGIN COLUMN}	${END COLUMN}
+	\	${value}=	Get Table Cell	${TABLE NAME}	${INDEX ROW}	${INDEX COLUMN}
+	\	Append To Lists	 ${LIST}	${value}
