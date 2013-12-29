@@ -20,6 +20,7 @@ ${CLASS DETAIL}	/school/viewClassDetail
 ${CONDUCT URL}	/school/hanhkiem
 ${CLASS ID}	1480
 ${DATE}	28/12/2013
+${DATE3}	23/12/2013
 *** Keywords ***
 Open Browser To Login Page
 	Open Browser	${LOGIN URL}	${BROWSER}
