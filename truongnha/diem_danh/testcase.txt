@@ -17,7 +17,7 @@ TEST Class List
 Test Muster Detail
 	Go To Muster Detail
 	
-Test Enter All Value Muster To Cell
+Test Enter All Value Muster To Cell	#Input to Cell
 	Set Assign Id To Cell	${td}	${start input id}	cell
 	Compare Input And Output	cell	p	P
 	Compare Input And Output	cell	k	K
@@ -28,7 +28,7 @@ Test Enter All Value Muster To Cell
 	Compare Input And Output	cell	?	\
 	Compare Input And Output	cell	${empty}	\
 
-Test Enter Value Muster To Mutil Cell With DATE
+Test Enter Value Muster To Mutil Cell With DATE	#Input to Column Date
 	:FOR	${i}	IN	27659	27660	27661	27662	27663	27664	27665	27666	27668	27669	27670	27671	27672	27673
 	\		Wait Until Page Contains Element	id=${i}_${DATE}_loai
 	\		Compare Input And Output	id=${i}_${DATE}_loai	p	P
@@ -40,7 +40,7 @@ Test Enter Value Muster To Mutil Cell With DATE
 	\		Compare Input And Output	id=${i}_${DATE}_loai	?	\
 	\		Compare Input And Output	id=${i}_${DATE}_loai	${empty}	\
 	
-Test Enter Value Muster To Mutil Cell With DATE 3
+Test Enter Value Muster To Mutil Cell With DATE 3	#Input to Column Date3
 	:FOR	${i}	IN	27659	27660	27661	27662	27663	27664	27665	27666	27668	27669	27670	27671	27672	27673
 	\		Wait Until Page Contains Element	id=${i}_${DATE3}_loai
 	\		Compare Input And Output	id=${i}_${DATE3}_loai	p	P

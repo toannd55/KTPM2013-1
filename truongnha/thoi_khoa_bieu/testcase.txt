@@ -36,17 +36,17 @@ TEST Select Value Multi Cell Column
 
 *** Keywords ***
 
-Select Multi Value One Cell
+Select Multi Value One Cell	#Input to Cell
 	:FOR	${j}	IN	20885	20886	20887	20888	20889	20890	20891	20892	20893	20894	20895	20896
 	\		Set Assign Id To Cell	${td}	${tr}	cell_id_${j}
 	\		Display Value By ID	cell_id_${j}	${j}
 
-Select Value Multi Cell Row
+Select Value Multi Cell Row	#Input Mutil Value To Row
 	:FOR	${i}	IN RANGE	2	7
 	\		Set Assign Id To Cell	1	${i}	cell_id_${i}
 	\		Display Value By ID	cell_id_${i}	${ran}
 	
-Select Value Multi Cell Column
+Select Value Multi Cell Column	#Input Mutil Value To Column
 	:FOR	${k}	IN RANGE	1	10
 	\		Set Assign Id To Cell	${k}	5	cell_id_${k}_${ran}
 	\		Display Value By ID	cell_id_${k}_${ran}	${ran}
