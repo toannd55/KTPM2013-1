@@ -41,7 +41,7 @@ TEST Enter Conduct For Students In Cells
 	Compare Input And Output	id=id_hk_thang_10	y	Y
 	Compare Input And Output	id=id_hk_thang_11	k	K
 
-TEST Enter Conduct For Students In Row
+TEST Enter Conduct For Students In Column
 
 	:FOR	${i}	IN RANGE	${Start Month}	${End Month}
 	\		Wait Until Page Contains Element	id=id_hk_thang_${i}	4s
